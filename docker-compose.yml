@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgres:17
+    container_name: relation_database
+    environment:
+      POSTGRES_DB: relations_labs
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - jpaRelations_labs_data:/var/lib/postgresql/data
+
+volumes:
+  jpaRelations_labs_data:
