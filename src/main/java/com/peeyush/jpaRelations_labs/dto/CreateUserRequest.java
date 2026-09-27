@@ -1,5 +1,6 @@
 package com.peeyush.jpaRelations_labs.dto;
 
+import com.peeyush.jpaRelations_labs.entity.Address;
 import com.peeyush.jpaRelations_labs.enums.Activity;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
@@ -22,4 +23,8 @@ public class CreateUserRequest {
     private String password;
 
     private Activity activity;
+
+    private String street;
+
+    private String city;
 }

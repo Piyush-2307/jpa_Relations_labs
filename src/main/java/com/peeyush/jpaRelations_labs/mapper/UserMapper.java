@@ -2,6 +2,7 @@ package com.peeyush.jpaRelations_labs.mapper;
 
 import com.peeyush.jpaRelations_labs.dto.CreateUserRequest;
 import com.peeyush.jpaRelations_labs.dto.UserResponse;
+import com.peeyush.jpaRelations_labs.entity.Address;
 import com.peeyush.jpaRelations_labs.entity.User;
 import org.springframework.stereotype.Component;
 
@@ -12,6 +13,6 @@ public class UserMapper {
     }
 
     public UserResponse toResponse(User user){
-        return new UserResponse(user.getId(), user.getUsername(), user.getEmail(), user.getActivity());
+        return new UserResponse(user.getId(), user.getUsername(), user.getEmail(), user.getActivity(), user.getAddress());
     }
 }

@@ -29,10 +29,19 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Activity activity;
 
+    @OneToOne
+    @JoinColumn(name = "address_id")
+    private Address address;
+
     public User(String username, String email, String password, Activity activity){
         this.username = username;
         this.email = email;
         this.password = password;
         this.activity = activity;
+    }
+
+    public void setAddress(Address address){
+        this.address = address;
+        address.setUser(this);
     }
 }
