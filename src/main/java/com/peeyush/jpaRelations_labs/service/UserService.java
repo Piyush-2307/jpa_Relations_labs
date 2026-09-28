@@ -7,7 +7,6 @@ import com.peeyush.jpaRelations_labs.entity.Address;
 import com.peeyush.jpaRelations_labs.entity.User;
 import com.peeyush.jpaRelations_labs.enums.Activity;
 import com.peeyush.jpaRelations_labs.mapper.UserMapper;
-import com.peeyush.jpaRelations_labs.repository.AddressRepository;
 import com.peeyush.jpaRelations_labs.repository.UserRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,12 +16,10 @@ import org.springframework.stereotype.Service;
 public class UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
-    private final AddressRepository addressRepository;
 
-    public UserService(UserRepository userRepository, UserMapper userMapper, AddressRepository addressRepository){
+    public UserService(UserRepository userRepository, UserMapper userMapper){
         this.userRepository = userRepository;
         this.userMapper = userMapper;
-        this.addressRepository = addressRepository;
     }
 
     public UserResponse createUser(CreateUserRequest request){
@@ -30,8 +27,6 @@ public class UserService {
         user.setActivity(Activity.ONLINE);
         Address address = new Address(request.getStreet(), request.getCity());
         user.setAddress(address);
-        address.setUser(user);
-        addressRepository.save(address);
         return userMapper.toResponse(userRepository.save(user));
     }
 

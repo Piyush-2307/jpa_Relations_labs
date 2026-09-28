@@ -1,6 +1,5 @@
 package com.peeyush.jpaRelations_labs.dto;
 
-import com.peeyush.jpaRelations_labs.entity.Address;
 import com.peeyush.jpaRelations_labs.enums.Activity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,5 +13,5 @@ public class UserResponse {
     private String username;
     private String email;
     private Activity activity;
-    private Address address;
+    private AddressResponse addressResponse;
 }

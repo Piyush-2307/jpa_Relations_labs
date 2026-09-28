@@ -29,7 +29,7 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Activity activity;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "address_id")
     private Address address;
 
@@ -42,6 +42,9 @@ public class User {
 
     public void setAddress(Address address){
         this.address = address;
-        address.setUser(this);
+
+        if (address != null && address.getUser() != this){
+            address.setUser(this);
+        }
     }
 }

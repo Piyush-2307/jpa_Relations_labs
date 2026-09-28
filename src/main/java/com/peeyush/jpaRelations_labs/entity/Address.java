@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.stereotype.Component;
 
 @Entity
 @Getter
@@ -29,10 +28,5 @@ public class Address {
     public Address(String street, String city){
         this.street = street;
         this.city = city;
-    }
-
-    public void setUser(User user){
-        this.user = user;
-        user.setAddress(this);
     }
 }
