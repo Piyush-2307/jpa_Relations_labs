@@ -1,8 +1,6 @@
 package com.peeyush.jpaRelations_labs.controller;
 
-import com.peeyush.jpaRelations_labs.dto.CreateUserRequest;
-import com.peeyush.jpaRelations_labs.dto.UpdateRequest;
-import com.peeyush.jpaRelations_labs.dto.UserResponse;
+import com.peeyush.jpaRelations_labs.dto.*;
 import com.peeyush.jpaRelations_labs.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
@@ -21,6 +19,16 @@ public class UserController {
     @PostMapping("/create")
     public UserResponse createUser(@Valid @RequestBody CreateUserRequest request){
         return userService.createUser(request);
+    }
+
+    @PostMapping("/orderCreation")
+    public OrderResponse createOrder(@Valid @RequestBody CreateOrderRequest request){
+        return userService.createOrder(request);
+    }
+
+    @PutMapping("/user/{userId}/order/{orderId}")
+    public OrderResponse order(@PathVariable Long userId,@PathVariable Long orderId){
+        return userService.order(userId, orderId);
     }
 
     @GetMapping

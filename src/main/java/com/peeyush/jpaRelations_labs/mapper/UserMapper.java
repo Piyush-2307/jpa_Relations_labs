@@ -2,10 +2,15 @@ package com.peeyush.jpaRelations_labs.mapper;
 
 import com.peeyush.jpaRelations_labs.dto.AddressResponse;
 import com.peeyush.jpaRelations_labs.dto.CreateUserRequest;
+import com.peeyush.jpaRelations_labs.dto.OrderResponse;
 import com.peeyush.jpaRelations_labs.dto.UserResponse;
 import com.peeyush.jpaRelations_labs.entity.Address;
+import com.peeyush.jpaRelations_labs.entity.Order;
 import com.peeyush.jpaRelations_labs.entity.User;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 public class UserMapper {
@@ -15,19 +20,23 @@ public class UserMapper {
 
     public UserResponse toResponse(User user){
 
-        Address address = user.getAddress();
+//        Address address = user.getAddress();
 
         AddressResponse addressResponse = null;
 
-        if (address != null){
+        if (user.getAddress() != null){
             addressResponse = new AddressResponse(
-                    address.getId(),
-                    address.getStreet(),
-                    address.getCity()
+                    user.getAddress().getId(),
+                    user.getAddress().getStreet(),
+                    user.getAddress().getCity()
             );
         }
 
         return new UserResponse(user.getId(), user.getUsername(), user.getEmail(), user.getActivity(), addressResponse);
 
+    }
+
+    public Address toAddress(CreateUserRequest request){
+        return new Address(request.getStreet(), request.getCity());
     }
 }

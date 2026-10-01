@@ -14,4 +14,5 @@ public class UserResponse {
     private String email;
     private Activity activity;
     private AddressResponse addressResponse;
+//    private OrderResponse orderResponse;
 }

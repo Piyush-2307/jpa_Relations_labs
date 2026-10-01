@@ -6,6 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -14,6 +17,7 @@ import lombok.Setter;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private Long id;
 
     @Column(name = "username", nullable = false)
@@ -33,6 +37,9 @@ public class User {
     @JoinColumn(name = "address_id")
     private Address address;
 
+    @OneToMany(mappedBy = "user")
+    private List<Order> orders = new ArrayList<>();
+
     public User(String username, String email, String password, Activity activity){
         this.username = username;
         this.email = email;
@@ -43,8 +50,13 @@ public class User {
     public void setAddress(Address address){
         this.address = address;
 
-        if (address != null && address.getUser() != this){
+        if (address != null){
             address.setUser(this);
         }
+    }
+
+    public void addOrder(Order order){
+        orders.add(order);
+        order.setUser(this);
     }
 }
