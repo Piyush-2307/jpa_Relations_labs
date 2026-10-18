@@ -1,5 +1,6 @@
 package com.peeyush.jpaRelations_labs.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,6 +23,7 @@ public class Address {
     @Column(name = "city", nullable = false)
     private String city;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "address")
     private User user;
 

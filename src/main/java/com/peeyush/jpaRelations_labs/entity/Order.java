@@ -24,7 +24,7 @@ public class Order {
     @Column(name = "amount")
     private int amount;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 

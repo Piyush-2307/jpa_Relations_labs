@@ -1,11 +1,14 @@
 package com.peeyush.jpaRelations_labs.controller;
 
 import com.peeyush.jpaRelations_labs.dto.*;
+import com.peeyush.jpaRelations_labs.entity.Order;
 import com.peeyush.jpaRelations_labs.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/users")
@@ -29,6 +32,11 @@ public class UserController {
     @PutMapping("/user/{userId}/order/{orderId}")
     public OrderResponse order(@PathVariable Long userId,@PathVariable Long orderId){
         return userService.order(userId, orderId);
+    }
+
+    @GetMapping("/order/details")
+    public Page<Order> findOrdersWithUser(Pageable pageable){
+        return userService.findOrdersWithUser(pageable);
     }
 
     @GetMapping

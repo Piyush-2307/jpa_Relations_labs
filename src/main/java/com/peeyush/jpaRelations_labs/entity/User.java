@@ -1,5 +1,6 @@
 package com.peeyush.jpaRelations_labs.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.peeyush.jpaRelations_labs.enums.Activity;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -37,6 +38,7 @@ public class User {
     @JoinColumn(name = "address_id")
     private Address address;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     private List<Order> orders = new ArrayList<>();
 

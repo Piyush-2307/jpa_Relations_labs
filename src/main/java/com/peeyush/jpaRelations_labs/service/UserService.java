@@ -11,6 +11,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserService {
     private final UserRepository userRepository;
@@ -58,6 +60,10 @@ public class UserService {
         user.setEmail(request.getEmail());
 
         return userMapper.toResponse(userRepository.save(user));
+    }
+
+    public Page<Order> findOrdersWithUser(Pageable pageable){
+        return orderRepository.findOrdersWithUser(pageable);
     }
 
     public void deleteUser(Long id){
